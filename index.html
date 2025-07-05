@@ -13,7 +13,6 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Bagian atas */
     .header {
       background-color: white;
       display: flex;
@@ -34,25 +33,25 @@
       font-size: 28px;
       font-weight: bold;
       margin-left: 20px;
-       font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
+
     .elektro {
-  color: #004080; /* biru tua*/
-}
+      color: #004080;
+    }
 
-.u {
-  color: black;
-}
+    .u {
+      color: black;
+    }
 
-.n {
-  color: red;
-}
+    .n {
+      color: red;
+    }
 
-.sa {
-  color: black;
-}
+    .sa {
+      color: black;
+    }
 
-    /* Bagian bawah */
     .content {
       background-color: #004080;
       padding: 40px 20px;
@@ -62,7 +61,23 @@
     .section-title {
       text-align: center;
       font-size: 22px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      background-color: white;
+      color: #004080;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     .iframe-container {
@@ -87,29 +102,47 @@
   <div class="header">
     <img src="10_UNSA.png" alt="Logo 1" class="logo" />
     <img src="LOGOIMATEO.png" alt="Logo 2" class="logo" />
-   <div class="title">
-    <span class="elektro">ELEKTRO</span>
-    <span class="unsa">
-      <span class="u">u</span><span class="n">n</span><span class="sa">sa</span>
-    </span>
+    <div class="title">
+      <span class="elektro">ELEKTRO</span>
+      <span class="unsa">
+        <span class="u">u</span><span class="n">n</span><span class="sa">sa</span>
+      </span>
+    </div>
   </div>
-     </div>
-    
 
   <!-- Bagian Bawah -->
   <div class="content">
     <div class="section-title">DATA OSILASI JEMBATAN</div>
+
+    <div class="buttons">
+      <button onclick="setTimeRange('now-5m')">Last 5 Min</button>
+      <button onclick="setTimeRange('now-3h')">Last 3 Hours</button>
+      <button onclick="setTimeRange('now-24h')">Last 24 Hours</button>
+      <button onclick="setTimeRange('now-1d')">Last 1 Day</button>
+    </div>
+
     <div class="iframe-container">
-     <iframe src="https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&panelId=1&__feature.dashboardSceneSolo&from=now-5m&to=now&refresh=5s
-" width="450" height="200" frameborder="0"></iframe>
-      <iframe src="https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&panelId=3&__feature.dashboardSceneSolo&from=now-5m&to=now&refresh=5s
-" width="450" height="200" frameborder="0"></iframe>
-      <iframe src="https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&panelId=2&__feature.dashboardSceneSolo&from=now-5m&to=now&refresh=5s
-" width="450" height="200" frameborder="0"></iframe>
-      <iframe src="https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&panelId=4&__feature.dashboardSceneSolo&from=now-5m&to=now&refresh=5s
-" width="450" height="200" frameborder="0"></iframe>
+      <iframe id="panel1"></iframe>
+      <iframe id="panel2"></iframe>
+      <iframe id="panel3"></iframe>
+      <iframe id="panel4"></iframe>
     </div>
   </div>
 
+  <script>
+    const panelBaseUrl = "https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&__feature.dashboardSceneSolo&refresh=5s";
+
+    function setTimeRange(from) {
+      document.getElementById("panel1").src = `${panelBaseUrl}&panelId=1&from=${from}&to=now`;
+      document.getElementById("panel2").src = `${panelBaseUrl}&panelId=3&from=${from}&to=now`;
+      document.getElementById("panel3").src = `${panelBaseUrl}&panelId=2&from=${from}&to=now`;
+      document.getElementById("panel4").src = `${panelBaseUrl}&panelId=4&from=${from}&to=now`;
+    }
+
+    // Load default time range saat pertama kali dibuka
+    window.onload = () => setTimeRange('now-5m');
+  </script>
+
 </body>
 </html>
+
