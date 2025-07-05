@@ -114,11 +114,17 @@
   <div class="content">
     <div class="section-title">DATA OSILASI JEMBATAN</div>
 
-    <div class="buttons">
-      <button onclick="setTimeRange('now-5m')">Last 5 Min</button>
-      <button onclick="setTimeRange('now-3h')">Last 3 Hours</button>
-      <button onclick="setTimeRange('now-24h')">Last 24 Hours</button>
-      <button onclick="setTimeRange('now-1d')">Last 1 Day</button>
+ <div class="dropdown-container">
+      <select onchange="setTimeRange(this.value)">
+        <option value="now-5m">⏱️ Time Range: Last 5 Minutes</option>
+        <option value="now-1h">Last 1 Hour</option>
+        <option value="now-3h">Last 3 Hours</option>
+        <option value="now-6h">Last 6 Hours</option>
+        <option value="now-12h">Last 12 Hours</option>
+        <option value="now-24h">Last 24 Hours</option>
+        <option value="now-1d">Last 1 Day</option>
+        <option value="now-7d">Last 7 Days</option>
+      </select>
     </div>
 
     <div class="iframe-container">
