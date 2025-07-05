@@ -141,19 +141,4 @@
 </body>
 </html>
 
-    const panelBaseUrl = "https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&__feature.dashboardSceneSolo&refresh=5s";
-
-    function setTimeRange(from) {
-      document.getElementById("panel1").src = `${panelBaseUrl}&panelId=1&from=${from}&to=now`;
-      document.getElementById("panel2").src = `${panelBaseUrl}&panelId=3&from=${from}&to=now`;
-      document.getElementById("panel3").src = `${panelBaseUrl}&panelId=2&from=${from}&to=now`;
-      document.getElementById("panel4").src = `${panelBaseUrl}&panelId=4&from=${from}&to=now`;
-    }
-
-    // Load default time range saat pertama kali dibuka
-    window.onload = () => setTimeRange('now-5m');
-  </script>
-
-</body>
-</html>
 
