@@ -40,17 +40,9 @@
       color: #004080;
     }
 
-    .u {
-      color: black;
-    }
-
-    .n {
-      color: red;
-    }
-
-    .sa {
-      color: black;
-    }
+    .u { color: black; }
+    .n { color: red; }
+    .sa { color: black; }
 
     .content {
       background-color: #004080;
@@ -61,23 +53,21 @@
     .section-title {
       text-align: center;
       font-size: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
-    .buttons {
+    .dropdown-container {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
-    .buttons button {
-      background-color: white;
+    select {
+      padding: 10px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
       color: #004080;
       border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
     }
 
     .iframe-container {
@@ -98,7 +88,7 @@
 </head>
 <body>
 
-  <!-- Bagian Atas -->
+  <!-- Header -->
   <div class="header">
     <img src="10_UNSA.png" alt="Logo 1" class="logo" />
     <img src="LOGOIMATEO.png" alt="Logo 2" class="logo" />
@@ -110,11 +100,11 @@
     </div>
   </div>
 
-  <!-- Bagian Bawah -->
+  <!-- Content -->
   <div class="content">
     <div class="section-title">DATA OSILASI JEMBATAN</div>
 
- <div class="dropdown-container">
+    <div class="dropdown-container">
       <select onchange="setTimeRange(this.value)">
         <option value="now-5m">⏱️ Time Range: Last 5 Minutes</option>
         <option value="now-1h">Last 1 Hour</option>
@@ -136,6 +126,22 @@
   </div>
 
   <script>
+    const baseUrl = "https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&__feature.dashboardSceneSolo&refresh=5s";
+
+    function setTimeRange(from) {
+      document.getElementById("panel1").src = `${baseUrl}&panelId=1&from=${from}&to=now`;
+      document.getElementById("panel2").src = `${baseUrl}&panelId=3&from=${from}&to=now`;
+      document.getElementById("panel3").src = `${baseUrl}&panelId=2&from=${from}&to=now`;
+      document.getElementById("panel4").src = `${baseUrl}&panelId=4&from=${from}&to=now`;
+    }
+
+    // Load default
+    window.onload = () => setTimeRange('now-5m');
+  </script>
+
+</body>
+</html>
+
     const panelBaseUrl = "https://grafana.elektrounsa.online/d-solo/5f5947e5-f787-4f43-9570-a5b6ea255b4c/osilasi?orgId=1&timezone=browser&__feature.dashboardSceneSolo&refresh=5s";
 
     function setTimeRange(from) {
