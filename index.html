@@ -120,8 +120,7 @@
     <div class="iframe-container">
       <iframe id="panel1"></iframe>
       <iframe id="panel2"></iframe>
-      <iframe id="panel3"></iframe>
-      <iframe id="panel4"></iframe>
+     
     </div>
   </div>
 
@@ -130,9 +129,8 @@
 
     function setTimeRange(from) {
       document.getElementById("panel1").src = `${baseUrl}&panelId=1&from=${from}&to=now`;
-      document.getElementById("panel2").src = `${baseUrl}&panelId=3&from=${from}&to=now`;
       document.getElementById("panel3").src = `${baseUrl}&panelId=2&from=${from}&to=now`;
-      document.getElementById("panel4").src = `${baseUrl}&panelId=4&from=${from}&to=now`;
+      
     }
 
     // Load default
@@ -141,5 +139,6 @@
 
 </body>
 </html>
+
 
 
